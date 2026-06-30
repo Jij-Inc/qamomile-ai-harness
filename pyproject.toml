@@ -1,7 +1,7 @@
 [project]
 name = "qamomile-ai-harness"
 version = "0.1.0"
-description = "Offline AI harness for solving QCoder-style quantum programming tasks with Qamomile"
+description = "AI harness for solving QCoder-style quantum programming tasks with Qamomile"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
