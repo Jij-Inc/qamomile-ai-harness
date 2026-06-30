@@ -1,29 +1,30 @@
 # Qamomile AI Harness
 
-AI harness, benchmark utilities, and agent skills for developing quantum
-algorithm code with [Qamomile](https://github.com/Jij-Inc/Qamomile).
+AI harness, evaluation utilities, and agent skills for helping coding agents
+write quantum algorithm code with [Qamomile](https://github.com/Jij-Inc/Qamomile).
 
-The project started as a no-web QCoder benchmark harness, but it is not limited
-to offline use. It supports local QCoder-style evaluation, no-web agent prompts,
-Codex/Claude skill packaging, and paper-derived Qamomile implementation notes.
+The goal is to make AI-generated Qamomile code more reliable: give agents the
+right local references, teach them Qamomile-specific coding patterns, catch
+common mistakes early, and provide small executable checks before moving to
+larger experiments or external benchmarks.
 
 ## What Is Included
 
-- A small local QCoder-style evaluator for Qamomile `@qmc.qkernel` solutions.
+- Qamomile-focused agent instructions and prompts.
 - Static checks for common AI-generated Qamomile mistakes.
-- Fixture benchmark cases and reference solutions for smoke testing.
-- Reusable no-web prompts and skills for coding agents.
-- Codex and Claude Code plugin packages for the same Qamomile/QCoder skill.
+- Small local evaluation cases and reference solutions for smoke testing.
+- Codex and Claude Code plugin packages for the Qamomile skill.
 - Notes from selected quantum-algorithm papers, distilled into Qamomile-focused
   implementation guidance.
+- Optional benchmark adapters built on the same harness.
 
-This repository does not vendor the full QCoder dataset, Qamomile source tree,
-arXiv PDFs, agent run logs, or local Python environment. Those are local working
-inputs and are intentionally ignored.
+This repository does not vendor external datasets, the Qamomile source tree,
+arXiv PDFs, agent run logs, or local Python environment. Those are local
+working inputs and are intentionally ignored.
 
 ## Quick Start
 
-Install dependencies with `uv`, then run the local fixture benchmark:
+Install dependencies with `uv`, then run the local checks:
 
 ```bash
 UV_CACHE_DIR=.uv-cache uv sync
@@ -31,7 +32,8 @@ UV_CACHE_DIR=.uv-cache uv run pytest -q
 UV_CACHE_DIR=.uv-cache uv run qcoder-batch tests/fixtures/solutions
 ```
 
-The fixture benchmark currently covers three small state-preparation cases:
+The fixture cases are intentionally small so they can quickly validate that the
+harness can import, transpile, and evaluate AI-written Qamomile kernels:
 
 - `QPC001_A1`: prepare `|+>`.
 - `QPC001_A2`: prepare a uniform superposition.
@@ -49,7 +51,52 @@ Run static checks over candidate solutions:
 UV_CACHE_DIR=.uv-cache uv run qcoder-check tests/fixtures/solutions
 ```
 
-## Benchmark Data
+## Agent Workflow
+
+This harness is designed for workflows where an AI agent writes Qamomile code
+and another process checks it. A typical loop is:
+
+1. Give the agent the relevant skill, prompt, local docs, and task.
+2. Ask it to write a normal Python file with Qamomile `@qmc.qkernel` functions.
+3. Run static checks to catch common Qamomile mistakes.
+4. Run a small local evaluator or smoke test.
+5. Use the result to update the prompt, skill, or candidate solution.
+
+The workflow works in both connected and no-web environments. The no-web mode is
+important because benchmark agents often have filesystem access but no browser;
+connected workflows can additionally use online references or external
+evaluation services.
+
+## Agent Skills
+
+The main skill lives at:
+
+```text
+skills/qamomile_qcoder/SKILL.md
+```
+
+Use it when an agent needs to write, debug, or review Qamomile kernels. It is
+especially useful for restricted environments where the agent can read local
+files but cannot browse the web. In connected workflows, the same rules still
+help keep Qamomile code idiomatic and easy to evaluate.
+
+The no-web prompt template is:
+
+```text
+prompts/offline_qamomile_agent.md
+```
+
+Paper-derived implementation notes are under:
+
+```text
+docs/arxiv_papers/
+```
+
+## Benchmark Adapters
+
+The current benchmark adapter uses a compact QCoder-style case format because it
+is a useful target for state-preparation tasks. It is one use case for the
+harness, not the project boundary.
 
 The committed `benchmarks/cases/` directory contains small local cases that are
 safe to run without external services. If you have a QCoder Benchmark JSONL
@@ -68,32 +115,6 @@ UV_CACHE_DIR=.uv-cache uv run qcoder-prepare
 The public QCoder benchmark also has a web/API evaluation path. This harness is
 designed so local simulator checks and agent iteration can be used alongside
 external evaluation workflows when those are available.
-
-## Agent Skills
-
-The main skill lives at:
-
-```text
-skills/qamomile_qcoder/SKILL.md
-```
-
-Use it when an agent needs to write, debug, or review Qamomile kernels for
-QCoder-style tasks. The skill is especially useful in restricted environments
-where the agent can read local files but cannot browse the web. In connected
-workflows, the same rules still help keep Qamomile code idiomatic and easy to
-evaluate.
-
-The no-web prompt template is:
-
-```text
-prompts/offline_qamomile_agent.md
-```
-
-Paper-derived implementation notes are under:
-
-```text
-docs/arxiv_papers/
-```
 
 See `docs/project_structure.md` and `skills/qamomile_qcoder/SKILL.md`.
 
@@ -117,7 +138,7 @@ useful for development, but it is not part of the public release artifact.
 
 ## Agent Plugin Distribution
 
-The Qamomile/QCoder skill is packaged for both Codex and Claude Code under:
+The Qamomile skill is packaged for both Codex and Claude Code under:
 
 ```text
 plugins/codex/qamomile-qcoder/
