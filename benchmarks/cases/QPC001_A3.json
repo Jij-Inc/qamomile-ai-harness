@@ -1,0 +1,20 @@
+{
+  "id": "QPC001_A3",
+  "title": "Prepare Bell state",
+  "source_problem": "references/qcoder-benchmark/codes/Problems/QPC001_A3.txt",
+  "problem_statement": "Implement the operation of preparing the state |psi> = (|00> + |11>) / sqrt(2) from the zero state on a quantum circuit with 2 qubits. Global phase is ignored.",
+  "qamomile_template": "import qamomile.circuit as qmc\n\n@qmc.qkernel\ndef solve() -> qmc.Vector[qmc.Qubit]:\n    q = qmc.qubit_array(2, name=\"q\")\n    # Write your Qamomile circuit here.\n    return q\n",
+  "inputs": [
+    {
+      "bindings": {},
+      "target_state": [
+        {"index": 0, "real": 1.0, "imag": 0.0},
+        {"index": 3, "real": 1.0, "imag": 0.0}
+      ]
+    }
+  ],
+  "allowed_gates": ["h", "cx"],
+  "max_depth": 2,
+  "ignore_global_phase": true,
+  "fidelity_threshold": 0.999999999
+}

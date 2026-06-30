@@ -1,0 +1,13 @@
+.venv/
+.uv-cache/
+.cache/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.DS_Store
+agent_runs/
+data/raw/
+data/processed/
+references/arxiv/
+references/qamomile/
+references/qcoder-benchmark/

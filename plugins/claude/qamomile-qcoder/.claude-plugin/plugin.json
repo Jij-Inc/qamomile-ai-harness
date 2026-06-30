@@ -1,0 +1,16 @@
+{
+  "name": "qamomile-qcoder",
+  "version": "0.1.0",
+  "description": "Offline Qamomile skill pack for QCoder-style benchmark solving and paper-derived quantum algorithm demos.",
+  "author": {
+    "name": "Qamomile AI Harness contributors"
+  },
+  "license": "MIT",
+  "keywords": [
+    "qamomile",
+    "qcoder",
+    "quantum-computing",
+    "benchmark",
+    "skills"
+  ]
+}

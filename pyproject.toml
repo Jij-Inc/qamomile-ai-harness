@@ -1,0 +1,30 @@
+[project]
+name = "qamomile-ai-harness"
+version = "0.1.0"
+description = "Offline AI harness for solving QCoder-style quantum programming tasks with Qamomile"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "datasets>=5.0.0",
+    "huggingface-hub>=1.20.1",
+    "pydantic>=2.13.4",
+    "pytest>=9.1.0",
+    "qamomile>=0.12.6",
+    "qiskit>=2.4.2",
+    "qiskit-aer>=0.17.2",
+    "rich>=15.0.0",
+    "typer>=0.25.1",
+]
+
+[project.scripts]
+qcoder-prepare = "qamomile_ai_harness.cli:prepare"
+qcoder-eval = "qamomile_ai_harness.cli:evaluate"
+qcoder-batch = "qamomile_ai_harness.cli:batch"
+qcoder-check = "qamomile_ai_harness.cli:check"
+
+[build-system]
+requires = ["uv_build>=0.11.19,<0.12.0"]
+build-backend = "uv_build"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

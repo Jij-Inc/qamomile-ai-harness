@@ -1,0 +1,20 @@
+{
+  "name": "qamomile-ai-harness",
+  "interface": {
+    "displayName": "Qamomile AI Harness"
+  },
+  "plugins": [
+    {
+      "name": "qamomile-qcoder",
+      "source": {
+        "source": "local",
+        "path": "./plugins/codex/qamomile-qcoder"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Development"
+    }
+  ]
+}

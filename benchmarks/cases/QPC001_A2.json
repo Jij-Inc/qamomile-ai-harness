@@ -1,0 +1,22 @@
+{
+  "id": "QPC001_A2",
+  "title": "Prepare uniform superposition for n=2",
+  "source_problem": "references/qcoder-benchmark/codes/Problems/QPC001_A2.txt",
+  "problem_statement": "You are given n. Implement the operation of preparing the uniform superposition state |A> = sum_i |i> / sqrt(2^n) from the zero state on a quantum circuit with n qubits. This local case evaluates n=2. Global phase is ignored.",
+  "qamomile_template": "import qamomile.circuit as qmc\n\n@qmc.qkernel\ndef solve(n: qmc.UInt) -> qmc.Vector[qmc.Qubit]:\n    q = qmc.qubit_array(n, name=\"q\")\n    # Write your Qamomile circuit here.\n    return q\n",
+  "inputs": [
+    {
+      "bindings": {"n": 2},
+      "target_state": [
+        {"index": 0, "real": 1.0, "imag": 0.0},
+        {"index": 1, "real": 1.0, "imag": 0.0},
+        {"index": 2, "real": 1.0, "imag": 0.0},
+        {"index": 3, "real": 1.0, "imag": 0.0}
+      ]
+    }
+  ],
+  "allowed_gates": ["h"],
+  "max_depth": 1,
+  "ignore_global_phase": true,
+  "fidelity_threshold": 0.999999999
+}

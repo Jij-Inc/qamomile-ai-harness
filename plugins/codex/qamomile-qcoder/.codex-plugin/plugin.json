@@ -1,0 +1,35 @@
+{
+  "name": "qamomile-qcoder",
+  "version": "0.1.0",
+  "description": "Offline Qamomile skill pack for QCoder-style benchmark solving and paper-derived quantum algorithm demos.",
+  "author": {
+    "name": "Qamomile AI Harness contributors"
+  },
+  "skills": "./skills/",
+  "license": "MIT",
+  "keywords": [
+    "qamomile",
+    "qcoder",
+    "quantum-computing",
+    "benchmark",
+    "skills"
+  ],
+  "interface": {
+    "displayName": "Qamomile QCoder",
+    "shortDescription": "Solve QCoder-style tasks with Qamomile offline.",
+    "longDescription": "Guides coding agents to write, validate, and debug Qamomile quantum kernels for local QCoder-style benchmarks and selected paper-inspired algorithm demos without web access.",
+    "developerName": "Qamomile AI Harness contributors",
+    "category": "Development",
+    "capabilities": [
+      "Quantum",
+      "Python",
+      "Benchmarking"
+    ],
+    "defaultPrompt": [
+      "Use Qamomile to solve a local QCoder case.",
+      "Review this Qamomile solution for common agent mistakes.",
+      "Implement a paper-inspired Qamomile demo offline."
+    ],
+    "brandColor": "#0B6E69"
+  }
+}

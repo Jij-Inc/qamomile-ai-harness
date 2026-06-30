@@ -1,0 +1,20 @@
+{
+  "id": "QPC001_A1",
+  "title": "Prepare |+>",
+  "source_problem": "references/qcoder-benchmark/codes/Problems/QPC001_A1.txt",
+  "problem_statement": "Implement the operation of preparing the plus state |+> = (|0> + |1>) / sqrt(2) from the zero state on a quantum circuit with 1 qubit. Global phase is ignored.",
+  "qamomile_template": "import qamomile.circuit as qmc\n\n@qmc.qkernel\ndef solve() -> qmc.Vector[qmc.Qubit]:\n    q = qmc.qubit_array(1, name=\"q\")\n    # Write your Qamomile circuit here.\n    return q\n",
+  "inputs": [
+    {
+      "bindings": {},
+      "target_state": [
+        {"index": 0, "real": 1.0, "imag": 0.0},
+        {"index": 1, "real": 1.0, "imag": 0.0}
+      ]
+    }
+  ],
+  "allowed_gates": ["h"],
+  "max_depth": 1,
+  "ignore_global_phase": true,
+  "fidelity_threshold": 0.999999999
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "qamomile-ai-harness",
+  "description": "Qamomile and QCoder skills for offline quantum algorithm implementation agents.",
+  "owner": {
+    "name": "Qamomile AI Harness contributors"
+  },
+  "plugins": [
+    {
+      "name": "qamomile-qcoder",
+      "description": "Develop Qamomile solutions for QCoder-style benchmark cases and paper-derived quantum algorithm demos without web access.",
+      "author": {
+        "name": "Qamomile AI Harness contributors"
+      },
+      "category": "development",
+      "source": "./plugins/claude/qamomile-qcoder"
+    }
+  ]
+}
